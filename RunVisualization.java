@@ -6,7 +6,7 @@ import java.util.ArrayList;
 public class RunVisualization{
     public static void main(String[] args) {
 	ArrayList <ModNumber> firstlist = new ArrayList<ModNumber>();
-	firstlist.add(new ModNumber(10,1));
+	firstlist.add(new ModNumber(10,3));
 	Slide firstslide = new Slide(firstlist);
 	JFrame mainframe = new JFrame("Chinese Remainder Algorithm Visualized");
 	mainframe.addWindowListener(new WindowAdapter(){

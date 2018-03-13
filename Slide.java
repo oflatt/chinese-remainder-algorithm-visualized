@@ -1,4 +1,5 @@
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import javax.swing.*;
 import java.awt.Color;
 import java.util.ArrayList;
@@ -10,8 +11,9 @@ public class Slide extends JPanel{
 	modNumbers = modNumbersin;
     }
     
-    protected void paintComponent(Graphics g) {
+    protected void paintComponent(Graphics gin) {
 	int pixel = getHeight()/50;
+	Graphics2D g = (Graphics2D) gin;
 	
 	super.paintComponent(g);
 	for(ModNumber n : modNumbers) {
