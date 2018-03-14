@@ -16,8 +16,10 @@ public class Slide extends JPanel{
 	Graphics2D g = (Graphics2D) gin;
 	
 	super.paintComponent(g);
+	int i = 0;
 	for(ModNumber n : modNumbers) {
-	    n.draw(g, pixel, pixel);
+	    n.draw(g, pixel* 3 *i +pixel, pixel);
+	    i += 1;
 	}
     }
 }

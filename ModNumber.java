@@ -5,29 +5,16 @@ import java.awt.FontMetrics;
 import java.awt.Rectangle;
 import java.awt.BasicStroke;
 
-public class ModNumber{
+
+public abstract class ModNumber{
+
     private int number, modulus;
+    
     public ModNumber(int numberin, int modulusin){
 	number = numberin;
 	modulus = modulusin;
     }
 
-    public void draw(Graphics2D g, int ypos, int pixel){
-	
-	int i = 0;
-	while (i<number/modulus) {
-	    drawRect(g, i*2*pixel*modulus+pixel, ypos, modulus, pixel);
-	    i++;
-	}
-	i = 0;
-	while (i<number%modulus){
-	    int offset = (int) number/modulus;
-	    offset *= 2 * pixel * modulus;
-	    offset += pixel;
-	    drawRect(g, offset + pixel* 2 * i, ypos, 1, pixel);
-	    i++;
-	}
-    }
 
     public void drawRect(Graphics2D g, int xpos, int ypos, int width, int pixel){
 	Font f = new Font("TimesRoman", Font.PLAIN, pixel*2);
@@ -49,4 +36,13 @@ public class ModNumber{
 	g.drawString(text, x, y);
     }
 
+    public int getNum(){
+	return number;
+    }
+
+    public int getMod() {
+	return modulus;
+    }
+
+    public abstract void draw(Graphics2D g, int ypos, int pixel);
 }
