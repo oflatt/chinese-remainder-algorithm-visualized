@@ -15,8 +15,17 @@ public abstract class ModNumber{
 	modulus = modulusin;
     }
 
+    public int getNumber(){
+	return number;
+    }
+
+    public int getModulus(){
+	return modulus;
+    }
+
 
     public void drawRect(Graphics2D g, int xpos, int ypos, int width, int pixel){
+	Color oldColor = g.getColor();
 	Font f = new Font("TimesRoman", Font.PLAIN, pixel*2);
 	Rectangle r = new Rectangle(xpos, ypos, pixel*2*width, pixel*2);
 	g.setColor(new Color(230, 0, 0));
@@ -26,6 +35,7 @@ public abstract class ModNumber{
 	g.drawRoundRect(r.x, r.y, r.width, r.height, pixel/2, pixel/2);
 	g.setColor(new Color(0,200,0));
 	drawCenteredString(g, Integer.toString(width), r, f);
+	g.setColor(oldColor);
     }
 
     public void drawCenteredString(Graphics2D g, String text, Rectangle rect, Font font) {

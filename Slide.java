@@ -24,6 +24,43 @@ public class Slide extends JPanel{
 	message = messagein;
 	notes = notesin;
     }
+
+    // overload with a shallow copy constructor
+    public Slide(Slide otherSlide){
+	modNumbers = otherSlide.getModNumbers();
+	message = otherSlide.getMessage();
+	notes = otherSlide.getNotes();
+    }
+
+
+    // define accesors
+    public ArrayList<ModNumber> getModNumbers(){
+	return modNumbers;
+    }
+
+    public String getMessage(){
+	return message;
+    }
+
+    public ArrayList<String> getNotes(){
+	return notes;
+    }
+
+    // creates a new arraylist with all modnumbers the box variety
+    public void convertModNumbersToBoxes(){
+	ArrayList<ModNumber> newlist = new ArrayList<ModNumber>();
+	for(int i = 0; i<modNumbers.size() ; i++){
+	    if(modNumbers.get(i) instanceof ModNumberMathNotation) {
+		ModNumber old = modNumbers.get(i);
+		newlist.add(new ModNumberBoxes(old.getNumber(), old.getModulus()));
+	    } else {
+		newlist.add(modNumbers.get(i));
+	    }
+	}
+	modNumbers = newlist;
+
+	message = message + "- visualization";
+    }
     
     protected void paintComponent(Graphics gin) {
 	int pixel = getHeight()/50;
@@ -32,18 +69,20 @@ public class Slide extends JPanel{
 	super.paintComponent(g);
 
 	// first draw the message
-	Font f = new Font("TimesRoman", Font.PLAIN, pixel*2);
+	Font f = new Font("TimesRoman", Font.BOLD, pixel*3);
 	g.setFont(f);
 	FontMetrics metrics = g.getFontMetrics(f);
 	int stringy = pixel + metrics.getAscent();
-	int stringx = (pixel*100 - metrics.stringWidth(message)) / 2;
+	int stringx = pixel*5;
 	g.drawString(message, stringx, stringy);
 
+	f = new Font("TimesRoman", Font.PLAIN, pixel*2);
+	g.setFont(f);
 	// draw the problem in the bottom right corner
 	String s1 = "x \u2261 1 (mod 3)";
 	String s2 = "x \u2261 6 (mod 7)";
 	stringy = getHeight()-metrics.getHeight();
-	stringx = getWidth() - metrics.stringWidth(s2);
+	stringx = getWidth() - metrics.stringWidth(s2)-pixel;
 	g.drawString(s2, stringx, stringy);
 	stringy -= metrics.getHeight();
 	g.drawString(s1, stringx, stringy);
@@ -56,6 +95,7 @@ public class Slide extends JPanel{
 	}
 
 	// draw all the notes
+	f = new Font("TimesRoman", Font.PLAIN, pixel*2);
 	g.setFont(f);
 	for(String s : notes) {
 	    g.drawString("-" + s, pixel, pixel*5*i + pixel*10 + metrics.getAscent());

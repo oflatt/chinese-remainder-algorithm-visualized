@@ -12,14 +12,21 @@ public class RunVisualization{
 	firstlist.add(new ModNumberMathNotation(6, 7));
 	ArrayList<String> setupnotes = new ArrayList<String>();
 	setupnotes.add("The Chinese Remainder Thm will be used to solve this set of congruences for possible values of x.");
-	setupnotes.add("This algorithm can only be used to solve problems in which the moduli are coprime, ensuring that it has a solution.");
+	setupnotes.add("This algorithm can only be used to solve problems in which the moduli are coprime.");
 	Slide firstslide = new Slide(firstlist, "Problem Setup", setupnotes);
 	slides.add(firstslide);
+
+	Slide firstslideVisualization = new Slide(firstslide);
+	firstslideVisualization.convertModNumbersToBoxes();
+	slides.add(firstslideVisualization);
 
 	ArrayList <ModNumber> m1 = new ArrayList<ModNumber>();
 	m1.add(new ModNumberMathNotation(0, 7, "A"));
 	m1.add(new ModNumberMathNotation(1, 3, "A"));
-	slides.add(new Slide(m1, "The first factor to the answer- a number A such that"));
+	ArrayList<String> anotes = new ArrayList<String>();
+	anotes.add("A is a number that we can add to the answer without altering the residual of other moduli.");
+	anotes.add("This takes care of the condition from the first congruence in the problem (bottom right).");
+	slides.add(new Slide(m1, "First find a number A such that", anotes));
 	
 	
 	JFrame mainframe = new JFrame("Chinese Remainder Theorem Visualized");
@@ -43,10 +50,11 @@ public class RunVisualization{
 		int slideIndex = 0;
 		public void actionPerformed(ActionEvent e) {
 		    Container pane = mainframe.getContentPane();
-		    pane.removeAll();
+		    pane.remove(slides.get(slideIndex));
 
-		    slideIndex += 1;
+		    slideIndex = (slideIndex + 1) % slides.size();
 		    pane.add(slides.get(slideIndex));
+		    
 		    pane.revalidate();
 		    pane.repaint();
 		}
