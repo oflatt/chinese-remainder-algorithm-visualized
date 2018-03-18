@@ -46,6 +46,10 @@ public class Slide extends JPanel{
 	return notes;
     }
 
+    public void setMessage(String m){
+	message = m;
+    }
+
     // creates a new arraylist with all modnumbers the box variety
     public void convertModNumbersToBoxes(){
 	ArrayList<ModNumber> newlist = new ArrayList<ModNumber>();
@@ -104,11 +108,13 @@ public class Slide extends JPanel{
 	}
 
 	// draw all the notes
-	f = new Font("TimesRoman", Font.PLAIN, pixel*2);
+	int smallerfontsize = (int) (pixel*1.5);
+	f = new Font("TimesRoman", Font.PLAIN, smallerfontsize);
 	g.setFont(f);
+	int ypos = pixel*10 + metrics.getAscent() + i*pixel*5;
 	for(String s : notes) {
-	    g.drawString("-" + s, pixel, pixel*5*i + pixel*10 + metrics.getAscent());
-	    i += 1;
+	    g.drawString("-" + s, pixel, ypos);
+	    ypos += pixel*5;
 	}
     }
 }
