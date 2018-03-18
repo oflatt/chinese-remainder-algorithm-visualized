@@ -61,6 +61,15 @@ public class Slide extends JPanel{
 
 	message = message + "- visualization";
     }
+
+    public void convertToResiduals() {
+	for(ModNumber m : modNumbers) {
+	    if(m instanceof ModNumberBoxes){
+		ModNumberBoxes g = (ModNumberBoxes) m;
+		g.setResidual(true);
+	    }
+	}
+    }
     
     protected void paintComponent(Graphics gin) {
 	int pixel = getHeight()/50;

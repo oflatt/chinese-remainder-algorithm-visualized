@@ -18,6 +18,7 @@ public class RunVisualization{
 
 	Slide firstslideVisualization = new Slide(firstslide);
 	firstslideVisualization.convertModNumbersToBoxes();
+	firstslideVisualization.convertToResiduals();
 	slides.add(firstslideVisualization);
 
 	ArrayList <ModNumber> m1 = new ArrayList<ModNumber>();
@@ -27,6 +28,11 @@ public class RunVisualization{
 	anotes.add("A is a number that we can add to the answer without altering the residual of other moduli.");
 	anotes.add("This takes care of the condition from the first congruence in the problem (bottom right).");
 	slides.add(new Slide(m1, "First find a number A such that", anotes));
+
+	Slide m1Visualization = new Slide(slides.get(slides.size()-1));
+	m1Visualization.convertModNumbersToBoxes();
+	m1Visualization.convertToResiduals();
+	slides.add(m1Visualization);
 	
 	
 	JFrame mainframe = new JFrame("Chinese Remainder Theorem Visualized");
