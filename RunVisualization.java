@@ -92,6 +92,13 @@ public class RunVisualization{
 	m1CheckCheck.add(cond2);
 	slides.add(new Slide(m1CheckCheck, "Checking A", checkAnotes));
 
+	ArrayList <ModNumber> m1CheckCheckv = new ArrayList<ModNumber>();
+	m1CheckCheckv.add(new ModNumberBoxes(28, mod2));
+	m1CheckCheckv.add(new ModNumberBoxes(28, mod1));
+	ArrayList <String> checkvNotes = new ArrayList<String>();
+	checkvNotes.add("Notice the residuals represented by boxes marked '1'.");
+	slides.add(new Slide(m1CheckCheckv, "Checking A- visualized", checkvNotes));
+
 		      
 	JFrame mainframe = new JFrame("Chinese Remainder Theorem Visualized");
 	mainframe.addWindowListener(new WindowAdapter(){
