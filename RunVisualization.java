@@ -99,6 +99,41 @@ public class RunVisualization{
 	checkvNotes.add("Notice the residuals represented by boxes marked '1'.");
 	slides.add(new Slide(m1CheckCheckv, "Checking A- visualized", checkvNotes));
 
+	ArrayList <ModNumber> m2 = new ArrayList<ModNumber>();
+	m2.add(new ModNumberMathNotation(0, mod1, "B"));
+	m2.add(new ModNumberMathNotation(res2, mod2, "B"));
+	ArrayList<String> bnotes = new ArrayList<String>();
+	bnotes.add("A is a number affecting the first condition but not the second.");
+	bnotes.add("Now we need to find B- a number affecting the second condition but not the first.");
+	slides.add(new Slide(m2, "The second factor, B", bnotes));
+
+	
+	// Code for B -----------------------------
+	Slide m2Visualization = new Slide(slides.get(slides.size()-1));
+	m2Visualization.convertModNumbersToBoxes();
+	m2Visualization.convertToResiduals();
+	slides.add(m2Visualization);
+
+	t = 2;
+	ArrayList<ModNumber> m2calcsolved = new ArrayList<ModNumber>();
+	m2calcsolved.add(new ModNumberMathNotation(res2, mod2, "t", mod1));
+	solutiont = new ModNumberMathNotation(t, 70000, "t"); // modulus does not matter- it is not a congruence
+	solutiont.isCongruence = false; // make it an equals sign as one solution to the congruence
+	m2calcsolved.add(solutiont);
+	ArrayList<String> m2notessolved = new ArrayList<String>();
+	m2notessolved.add("Following the same procedure as before, we find a new t.");
+	m2notessolved.add("This one is more obvious- 6 is divisable evenly by 3 and is also the residual we are looking for.");
+	tsolvedSlide = new Slide(m2calcsolved, "Finding t again", m2notessolved);
+	slides.add(tsolvedSlide);
+
+
+	ArrayList<ModNumber> m2calcwithb = new ArrayList<ModNumber>();
+	m2calcwithb.add(m2calcsolved.get(0));
+	m2calcwithb.add(solutiont);
+	ModNumberMathNotation bsol = new ModNumberMathNotation(t*mod1, 70000, "B");
+	bsol.isCongruence = false;
+	m2calcwithb.add(bsol);
+	slides.add(new Slide(m2calcwithb, "Finding B", m2notessolved));
 		      
 	JFrame mainframe = new JFrame("Chinese Remainder Theorem Visualized");
 	mainframe.addWindowListener(new WindowAdapter(){
@@ -106,6 +141,14 @@ public class RunVisualization{
 		    System.exit(0);
 		}
 	    });
+
+
+	ArrayList<ModNumber> bboxes = new ArrayList<ModNumber>();
+	ModNumberBoxes bbox = new ModNumberBoxes(t*mod1, mod1);
+	ModNumberBoxes bboxothermod = new ModNumberBoxes(t*mod1, mod2);
+	bboxes.add(bbox);
+	bboxes.add(bboxothermod);
+	slides.add(new Slide(bboxes, "B visualized"));
 
 	int width = 1750;
 	int height = 1000;
