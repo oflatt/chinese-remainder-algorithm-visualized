@@ -134,13 +134,6 @@ public class RunVisualization{
 	bsol.isCongruence = false;
 	m2calcwithb.add(bsol);
 	slides.add(new Slide(m2calcwithb, "Finding B", m2notessolved));
-		      
-	JFrame mainframe = new JFrame("Chinese Remainder Theorem Visualized");
-	mainframe.addWindowListener(new WindowAdapter(){
-		public void windowClosing(WindowEvent e){
-		    System.exit(0);
-		}
-	    });
 
 
 	ArrayList<ModNumber> bboxes = new ArrayList<ModNumber>();
@@ -149,6 +142,27 @@ public class RunVisualization{
 	bboxes.add(bbox);
 	bboxes.add(bboxothermod);
 	slides.add(new Slide(bboxes, "B visualized"));
+
+	ArrayList<String> onexnotes = new ArrayList<String>();
+	onexnotes.add("Because A and B solve one of the congruences each independently, one solution to the set is simply A+B.");
+	onexnotes.add("You could imagine that with more than two congruences, you would need one value per congruance that leaves a residual of 0 for all other congruences.");
+	slides.add(new Slide(firstlist, "X=A+B", onexnotes));
+
+	//ArrayList <ModNumber> firstlist = new ArrayList<ModNumber>();
+	//firstlist.add(new ModNumberMathNotation(res1, mod1, Integer.toString(...));
+	//firstlist.add(new ModNumberMathNotation(res2, mod2));
+	
+
+	
+	// mainframe --------------------------------	      
+	JFrame mainframe = new JFrame("Chinese Remainder Theorem Visualized");
+	mainframe.addWindowListener(new WindowAdapter(){
+		public void windowClosing(WindowEvent e){
+		    System.exit(0);
+		}
+	    });
+
+
 
 	int width = 1750;
 	int height = 1000;
