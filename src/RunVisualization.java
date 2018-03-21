@@ -148,9 +148,32 @@ public class RunVisualization{
 	onexnotes.add("You could imagine that with more than two congruences, you would need one value per congruance that leaves a residual of 0 for all other congruences.");
 	slides.add(new Slide(firstlist, "X=A+B", onexnotes));
 
-	//ArrayList <ModNumber> firstlist = new ArrayList<ModNumber>();
-	//firstlist.add(new ModNumberMathNotation(res1, mod1, Integer.toString(...));
-	//firstlist.add(new ModNumberMathNotation(res2, mod2));
+	ArrayList <ModNumber> xsublist = new ArrayList<ModNumber>();
+	String aandb = Integer.toString(4*mod2) + "+" + Integer.toString(t*mod1);
+	xsublist.add(new ModNumberMathNotation(res1, mod1, aandb));
+	xsublist.add(new ModNumberMathNotation(res2, mod2, aandb));
+	slides.add(new Slide(xsublist, "Substituting X", onexnotes));
+
+	ArrayList <ModNumber> xsublist2 = new ArrayList<ModNumber>();
+	int x = 4*mod2 + t*mod1;
+	xsublist2.add(new ModNumberMathNotation(res1, mod1, Integer.toString(x)));
+	xsublist2.add(new ModNumberMathNotation(res2, mod2, Integer.toString(x)));
+	slides.add(new Slide(xsublist2, "Substituting X", onexnotes));
+	
+
+	ArrayList <ModNumber> checkX = new ArrayList<ModNumber>();
+	ModNumberMathNotation checkx1 = new ModNumberMathNotation(res1, mod1, Integer.toString(x));
+	ModNumberMathNotation checkx2 = new ModNumberMathNotation(res2, mod2, Integer.toString(x));
+	checkx1.isCheck = true;
+	checkx2.isCheck = true;
+	checkX.add(checkx1);
+	checkX.add(checkx2);
+	slides.add(new Slide(checkX, "Checking X"));
+
+	ArrayList <ModNumber> checkXVisualized = new ArrayList<ModNumber>();
+	checkXVisualized.add(new ModNumberBoxes(x, mod1));
+	checkXVisualized.add(new ModNumberBoxes(x, mod2));
+	slides.add(new Slide(checkXVisualized, "Checking X- visualized"));
 	
 
 	
