@@ -24,11 +24,11 @@ public abstract class ModNumber{
     }
 
 
-    public void drawRect(Graphics2D g, int xpos, int ypos, int width, int pixel){
+    public void drawRect(Graphics2D g, int xpos, int ypos, int width, int pixel, Color c){
 	Color oldColor = g.getColor();
 	Font f = new Font("TimesRoman", Font.PLAIN, pixel*2);
 	Rectangle r = new Rectangle(xpos, ypos, pixel*2*width, pixel*2);
-	g.setColor(new Color(230, 0, 0));
+	g.setColor(c);
 	g.fillRoundRect(r.x, r.y, r.width, r.height, pixel/2, pixel/2);
 	g.setColor(new Color(100,0,0));
 	g.setStroke(new BasicStroke(pixel/5));

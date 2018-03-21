@@ -99,6 +99,9 @@ public class RunVisualization{
 	checkvNotes.add("Notice the residuals represented by boxes marked '1'.");
 	slides.add(new Slide(m1CheckCheckv, "Checking A- visualized", checkvNotes));
 
+
+	
+	// Code for B -----------------------------
 	ArrayList <ModNumber> m2 = new ArrayList<ModNumber>();
 	m2.add(new ModNumberMathNotation(0, mod1, "B"));
 	m2.add(new ModNumberMathNotation(res2, mod2, "B"));
@@ -106,13 +109,15 @@ public class RunVisualization{
 	bnotes.add("A is a number affecting the first condition but not the second.");
 	bnotes.add("Now we need to find B- a number affecting the second condition but not the first.");
 	slides.add(new Slide(m2, "The second factor, B", bnotes));
+	
 
 	
-	// Code for B -----------------------------
-	Slide m2Visualization = new Slide(slides.get(slides.size()-1));
-	m2Visualization.convertModNumbersToBoxes();
-	m2Visualization.convertToResiduals();
+	ArrayList <ModNumber> m2boxes = new ArrayList<ModNumber>();
+	m2boxes.add(new ModNumberBoxes(0, mod1, 9999));
+	m2boxes.add(new ModNumberBoxes(res2, mod2, 9999));
+	Slide m2Visualization = new Slide(m2boxes, "The second factor, B- visualized", bnotes);
 	slides.add(m2Visualization);
+	slides.get(slides.size()-1).convertToResiduals();
 
 	t = 2;
 	ArrayList<ModNumber> m2calcsolved = new ArrayList<ModNumber>();
@@ -137,8 +142,8 @@ public class RunVisualization{
 
 
 	ArrayList<ModNumber> bboxes = new ArrayList<ModNumber>();
-	ModNumberBoxes bbox = new ModNumberBoxes(t*mod1, mod1);
-	ModNumberBoxes bboxothermod = new ModNumberBoxes(t*mod1, mod2);
+	ModNumberBoxes bbox = new ModNumberBoxes(t*mod1, mod1, 99999);
+	ModNumberBoxes bboxothermod = new ModNumberBoxes(t*mod1, mod2, 99999);
 	bboxes.add(bbox);
 	bboxes.add(bboxothermod);
 	slides.add(new Slide(bboxes, "B visualized"));
@@ -171,10 +176,13 @@ public class RunVisualization{
 	slides.add(new Slide(checkX, "Checking X"));
 
 	ArrayList <ModNumber> checkXVisualized = new ArrayList<ModNumber>();
-	checkXVisualized.add(new ModNumberBoxes(x, mod1));
-	checkXVisualized.add(new ModNumberBoxes(x, mod2));
+	ModNumberBoxes mod1x = new ModNumberBoxes(x, mod1, 6); // color B blue
+	ModNumberBoxes mod2x = new ModNumberBoxes(x, mod2, 7*4);
+	mod2x.isThreshholdLessthan = false;
+	checkXVisualized.add(mod1x);
+	checkXVisualized.add(mod2x);
 	slides.add(new Slide(checkXVisualized, "Checking X- visualized"));
-	
+
 
 	
 	// mainframe --------------------------------	      

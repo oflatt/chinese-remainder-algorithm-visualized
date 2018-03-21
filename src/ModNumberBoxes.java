@@ -7,25 +7,49 @@ import java.awt.BasicStroke;
 
 public class ModNumberBoxes extends ModNumber{
     public Boolean isResidual;
+    public int colorBlueThreshhold;
+    public Boolean isThreshholdLessthan;
+
+    public ModNumberBoxes(int numberin, int modulusin) {
+	this(numberin, modulusin, -1);
+    }
     
-    public ModNumberBoxes(int numberin, int modulusin){
+    public ModNumberBoxes(int numberin, int modulusin, int colorBlueThreshholdin){
 	super(numberin, modulusin);
 	isResidual = false;
+	colorBlueThreshhold = colorBlueThreshholdin;
+	isThreshholdLessthan = true;
     }
     
     public void draw(Graphics2D g, int ypos, int pixel){
 	
 	int i = 0;
 	while (i<getNum()/getMod()) {
-	    drawRect(g, i*2*pixel*getMod()+pixel, ypos, getMod(), pixel);
+	    Color c = new Color(230, 0, 0);
+	    if(getMod()*i<colorBlueThreshhold) {
+		if(isThreshholdLessthan) {
+		    c = new Color(0,0,200);
+		}
+	    } else if(!isThreshholdLessthan){
+		c = new Color(0,0,200);
+	    }
+	    drawRect(g, i*2*pixel*getMod()+pixel, ypos, getMod(), pixel, c);
 	    i++;
 	}
 	i = 0;
 	while (i<getNum()%getMod()){
+	    Color c = new Color(230, 0, 0);
+	    if(getNum()-(getNum()%getMod())+i<colorBlueThreshhold) {
+		if(isThreshholdLessthan){
+		    c = new Color(0,0,200);
+		}
+	    } else if(!isThreshholdLessthan){
+		c = new Color(0,0,200);
+	    }
 	    int offset = (int) getNum()/getMod();
 	    offset *= 2 * pixel * getMod();
 	    offset += pixel;
-	    drawRect(g, offset + pixel* 2 * i, ypos, 1, pixel);
+	    drawRect(g, offset + pixel* 2 * i, ypos, 1, pixel, c);
 	    i++;
 	}
 	
@@ -45,7 +69,11 @@ public class ModNumberBoxes extends ModNumber{
 		g.drawString(" + ", currentx, texty);
 		currentx += metrics.stringWidth(" + ");
 	    }
-	    drawRect(g, currentx, ypos, getMod(), pixel);
+	    Color c = new Color(230, 0, 0);
+	    if(getNum()+getMod()<colorBlueThreshhold) {
+		c = new Color(0,0,200);
+	    }
+	    drawRect(g, currentx, ypos, getMod(), pixel, c);
 	    currentx += 2*pixel*getMod();
 	    g.setFont(f);
 	    g.drawString(" * i, i \u2208 \u2124", currentx, texty);
