@@ -22,6 +22,7 @@ public class RunVisualization{
 	setupnotes.add("The Chinese Remainder Thm will be used to solve this set of congruences for possible values of x.");
 	setupnotes.add("This algorithm can only be used to solve problems in which the moduli are coprime.");
 	setupnotes.add("Each slide will have an accompanying visualization of the step.");
+	setupnotes.add("This visualization represents the modular arithmetic as diophantine equations.");
 	Slide firstslide = new Slide(firstlist, "Problem Setup", setupnotes);
 	slides.add(firstslide);
 
@@ -151,19 +152,19 @@ public class RunVisualization{
 	ArrayList<String> onexnotes = new ArrayList<String>();
 	onexnotes.add("Because A and B solve one of the congruences each independently, one solution to the set is simply A+B.");
 	onexnotes.add("You could imagine that with more than two congruences, you would need one value per congruance that leaves a residual of 0 for all other congruences.");
-	slides.add(new Slide(firstlist, "X=A+B", onexnotes));
+	slides.add(new Slide(firstlist, "x=A+B", onexnotes));
 
 	ArrayList <ModNumber> xsublist = new ArrayList<ModNumber>();
 	String aandb = Integer.toString(4*mod2) + "+" + Integer.toString(t*mod1);
 	xsublist.add(new ModNumberMathNotation(res1, mod1, aandb));
 	xsublist.add(new ModNumberMathNotation(res2, mod2, aandb));
-	slides.add(new Slide(xsublist, "Substituting X", onexnotes));
+	slides.add(new Slide(xsublist, "Substituting x", onexnotes));
 
 	ArrayList <ModNumber> xsublist2 = new ArrayList<ModNumber>();
 	int x = 4*mod2 + t*mod1;
 	xsublist2.add(new ModNumberMathNotation(res1, mod1, Integer.toString(x)));
 	xsublist2.add(new ModNumberMathNotation(res2, mod2, Integer.toString(x)));
-	slides.add(new Slide(xsublist2, "Substituting X", onexnotes));
+	slides.add(new Slide(xsublist2, "Substituting x", onexnotes));
 	
 
 	ArrayList <ModNumber> checkX = new ArrayList<ModNumber>();
@@ -173,7 +174,7 @@ public class RunVisualization{
 	checkx2.isCheck = true;
 	checkX.add(checkx1);
 	checkX.add(checkx2);
-	slides.add(new Slide(checkX, "Checking X"));
+	slides.add(new Slide(checkX, "Checking x"));
 
 	ArrayList <ModNumber> checkXVisualized = new ArrayList<ModNumber>();
 	ModNumberBoxes mod1x = new ModNumberBoxes(x, mod1, 6); // color B blue
@@ -181,7 +182,32 @@ public class RunVisualization{
 	mod2x.isThreshholdLessthan = false;
 	checkXVisualized.add(mod1x);
 	checkXVisualized.add(mod2x);
-	slides.add(new Slide(checkXVisualized, "Checking X- visualized"));
+	slides.add(new Slide(checkXVisualized, "Checking x- visualized"));
+
+	//because coprime, LCM, aka the number divisable by both, is just the moduli multiplied together
+	//finding all solutions
+	ArrayList <ModNumber> findall = new ArrayList<ModNumber>();
+	findall.add(new ModNumberMathNotation(x, mod1*mod2));
+	ArrayList <String> findallnotes = new ArrayList<String>();
+	findallnotes.add("Because the moduli are coprime, we know that the LCM is the product of the moduli.");
+	findallnotes.add("This implies that x is congruent to this LCM- dividing by the LCM does nothing to the residuals of each condition.");
+	findallnotes.add("This sometimes allows us to simplify x, like in this case.");
+	slides.add(new Slide(findall, "Finding all x", findallnotes));
+
+	ArrayList <ModNumber> findallsimple = new ArrayList<ModNumber>();
+	findallsimple.add(new ModNumberMathNotation(x-mod1*mod2, mod1*mod2));
+	slides.add(new Slide(findallsimple, "Simplifying x", findallnotes));
+
+	ArrayList <ModNumber> finalcheck = new ArrayList<ModNumber>();
+	finalcheck.add(new ModNumberBoxes(x-mod1*mod2, mod1));
+	finalcheck.add(new ModNumberBoxes(x-mod1*mod2, mod2));
+	slides.add(new Slide(finalcheck, "A final check"));
+
+	ArrayList<ModNumber> fundisplay = new ArrayList<ModNumber>();
+	for(int i = 0;i<10;i++){
+	    fundisplay.add(new ModNumberBoxes(3*4-i*3, 4, 3*4-i*3-1));
+	}
+	slides.add(new Slide(fundisplay, "The end"));
 
 
 	
