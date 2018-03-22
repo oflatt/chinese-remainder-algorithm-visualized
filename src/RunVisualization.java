@@ -245,5 +245,12 @@ public class RunVisualization{
 		}
 
 	    });
+
+	mainframe.addComponentListener(new ComponentAdapter() {
+		public void componentResized(ComponentEvent e) {
+		    Container pane = mainframe.getContentPane();
+		    nextButton.setBounds(100, pane.getHeight()-200, 100, 100);
+		}
+	    });
     }
 }
