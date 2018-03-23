@@ -3,7 +3,21 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
 
+/**
+ * Main Class for the Chinese Remainder Algorithm Visualization. Creates all slides and adds them to the frame.
+ *
+ * @author Oliver Flatt
+ * @version 0.1.1
+ * @since 03-18-2018
+ */
+
 public class RunVisualization{
+
+    /**main method for class- creates all slides, adds button
+     * 
+     * @param args
+     * @return nothing
+     */
     public static void main(String[] args) {
 	// define the problem
 	int res1 = 1;

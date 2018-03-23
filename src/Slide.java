@@ -6,26 +6,41 @@ import java.util.ArrayList;
 import java.awt.Font;
 import java.awt.FontMetrics;
 
+/**
+ * Displays notes, message (header), and modnumbers given.
+ * 
+ * @author Oliver Flatt
+ */
 public class Slide extends JPanel{
     private ArrayList<ModNumber> modNumbers;
     private String message;
     private ArrayList<String> notes;
-    
+
+    /** Smaller constructor for optional arguments
+     */
     public Slide(ArrayList<ModNumber> modNumbersin){
 	this(modNumbersin, "");
     }
 
+    /** Smaller constructor for optional arguments
+     */
     public Slide(ArrayList<ModNumber> modNumbersin, String messagein) {
 	this(modNumbersin, messagein, new ArrayList<String>());
     }
 
+    /** Main constructor for the Slide class
+     *
+     */
     public Slide(ArrayList<ModNumber> modNumbersin, String messagein, ArrayList<String> notesin) {
 	modNumbers = modNumbersin;
 	message = messagein;
 	notes = notesin;
     }
 
-    // overload with a shallow copy constructor
+    
+    /** Copy constructor
+     *Performs a shallow copy of the slide given
+     */
     public Slide(Slide otherSlide){
 	modNumbers = otherSlide.getModNumbers();
 	message = otherSlide.getMessage();
@@ -33,7 +48,8 @@ public class Slide extends JPanel{
     }
 
 
-    // define accesors
+    /** some accesors
+     */
     public ArrayList<ModNumber> getModNumbers(){
 	return modNumbers;
     }
@@ -50,7 +66,8 @@ public class Slide extends JPanel{
 	message = m;
     }
 
-    // creates a new arraylist with all modnumbers the box variety
+    /**Creates a new arraylist with all modnumbers the box variety
+     */
     public void convertModNumbersToBoxes(){
 	ArrayList<ModNumber> newlist = new ArrayList<ModNumber>();
 	for(int i = 0; i<modNumbers.size() ; i++){
@@ -66,6 +83,8 @@ public class Slide extends JPanel{
 	message = message + "- visualization";
     }
 
+    /**makes all ModNumberBoxes be residuals
+     */
     public void convertToResiduals() {
 	for(ModNumber m : modNumbers) {
 	    if(m instanceof ModNumberBoxes){
@@ -74,7 +93,9 @@ public class Slide extends JPanel{
 	    }
 	}
     }
-    
+
+    /**Override painComponent to draw
+     */
     protected void paintComponent(Graphics gin) {
 	int pixel = getHeight()/50;
 	Graphics2D g = (Graphics2D) gin;

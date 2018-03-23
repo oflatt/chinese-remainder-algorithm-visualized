@@ -5,12 +5,18 @@ import java.awt.FontMetrics;
 import java.awt.Rectangle;
 import java.awt.BasicStroke;
 
+/**ModNumberMathNotation displays the congruence in mathematical notation
+ *@author Oliver Flatt
+ */
+
 public class ModNumberMathNotation extends ModNumber{
     private String varName;
     private int multiplicand;
     public Boolean isCongruence;
     public Boolean isCheck;
-    
+
+    /**Smaller optional argument constructors
+     */
     public ModNumberMathNotation(int numberin, int modulusin){
 	this(numberin, modulusin, "x");
     }
@@ -19,6 +25,9 @@ public class ModNumberMathNotation extends ModNumber{
 	this(numberin, modulusin, varNamein, 1);
     }
 
+    /**Main constructor
+     *Sets the default values
+     */
     public ModNumberMathNotation(int numberin, int modulusin, String varNamein, int multiplicandin){
 	super(numberin, modulusin);
 	varName = varNamein;
@@ -26,7 +35,9 @@ public class ModNumberMathNotation extends ModNumber{
 	isCongruence = true;
 	isCheck = false;
     }
-    
+
+    /**Implements drawing the text
+     */
     public void draw(Graphics2D g, int ypos, int pixel){
 	
 	Font f = new Font("TimesRoman", Font.PLAIN, pixel*4);

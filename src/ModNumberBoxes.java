@@ -5,22 +5,33 @@ import java.awt.FontMetrics;
 import java.awt.Rectangle;
 import java.awt.BasicStroke;
 
+
+/**ModNumberBoxes displays ModNumber visually
+ *@author Oliver Flatt
+ */
 public class ModNumberBoxes extends ModNumber{
     public Boolean isResidual;
     public int colorBlueThreshhold;
     public Boolean isThreshholdLessthan;
 
+    /**Smaller constructor for optional argument
+     */
     public ModNumberBoxes(int numberin, int modulusin) {
 	this(numberin, modulusin, -1);
     }
-    
+
+    /**Main constructor
+     */
     public ModNumberBoxes(int numberin, int modulusin, int colorBlueThreshholdin){
 	super(numberin, modulusin);
 	isResidual = false;
 	colorBlueThreshhold = colorBlueThreshholdin;
 	isThreshholdLessthan = true;
     }
-    
+
+    /**Draws the boxes for visualization
+     *Depends on drawRect
+     */
     public void draw(Graphics2D g, int ypos, int pixel){
 	
 	int i = 0;
@@ -80,6 +91,8 @@ public class ModNumberBoxes extends ModNumber{
 	}
     }
 
+    /**Setattr function
+     */
     public void setResidual(Boolean in){
 	isResidual = in;
     }
